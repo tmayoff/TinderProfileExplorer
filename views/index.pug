@@ -1,5 +1,17 @@
 extends layout
 
 block content
-  h1 #{title}: #{username}
-  p Welcome to #{title} 
+  h1.is-size-3 Welcome to Tinder Profile Explorer
+  p.is-size-5 A place where you can gain some interesting insights into you Tinder dating life
+  
+  .card.m-5
+    .card-header
+      .card-header-title 
+        | Upload your data.json from&nbsp;
+        a(href="https://www.help.tinder.com/hc/en-us/articles/115005626726-How-do-I-request-a-copy-of-my-personal-data-") here
+    .card-content
+      form.form(action="/upload", method="post" encType="multipart/form-data") 
+        .field
+          input(name="data" type="file")
+        .field
+          button.control.button.is-primary(type="submit") Upload

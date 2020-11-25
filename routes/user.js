@@ -2,10 +2,11 @@ var express = require('express');
 var fs = require('fs')
 var router = express.Router();
 
-var profile_details = JSON.parse(fs.readFileSync("data.json"))
-
 /* GET users listing. */
 router.get('/', function (req, res, next) {
+
+  var profile_details = req.session.profile_details
+  if (!profile_details) return res.redirect('/')
 
   // Length of time on the app
   let timeSpan = Date.now() - Date.parse(profile_details.User.create_date)
@@ -53,6 +54,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/matches', function (req, res, next) {
+
+  var profile_details = req.session.profile_details
+  if (!profile_details) return res.redirect('/')
 
   // Message frequencies
   let message_search = ["Hey what's up", "Hey how's a going", "isolation", "quarantine"]

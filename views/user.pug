@@ -50,10 +50,16 @@ block content
                     td.td Dislikes you sent
                     td.td #{passed}
                 tr.tr
-                    td.td Number of girls seen
+                    if user.interested_in == "F"
+                        td.td Number of girls seen
+                    else
+                        td.td Number of guys seen
                     td.td #{totalSeen}
                 tr.tr
-                    td.td Percentage of girls liked
+                    if user.interested_in == "F"
+                        td.td Percentage of girls liked
+                    else
+                        td.td Percentage of guys liked
                     td.td #{(liked/totalSeen * 100).toFixed(2)}%
                 tr.tr
                     td.td Total Matches

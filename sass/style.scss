@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+$tinder-red: #ef5045;
+$tinder-orange: #ed694b;
+$primary: $tinder-orange;
+$info: $tinder-red;
+
+@import "../node_modules/bulma/bulma.sass";
