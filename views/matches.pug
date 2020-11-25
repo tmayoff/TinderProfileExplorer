@@ -1,0 +1,56 @@
+extends layout
+
+block content
+    .tile.is-ancestor.is-horizontal
+        .tile.is-child.is-3
+            .notification.is-info
+                .title Searched #{message_count} messages
+                table.table.is-hoverable.is-fullwidth
+                    tbody.tbody
+                        thead.thead
+                            tr.tr.is-selected
+                                td(colspan=2).td Message Frequencies
+                        each search, i in message_search
+                            tr.tr
+                                td.td= search
+                                td.td= message_counts[i]
+                table.table.is-hoverable.is-fullwidth
+                    thead.thead
+                        tr.tr.is-selected
+                            td(colspan=3).td Conversation Lengths (out of #{totalConvos} conversations)
+                    tbody.tbody
+                        tr.tr
+                            td.td One message sent
+                            td.td= oneMessage
+                            td.td #{(oneMessage/totalConvos * 100).toFixed(2)}%
+                        tr.tr
+                            td.td Less than 5 messages
+                            td.td= lessThan5
+                            td.td #{(lessThan5/totalConvos * 100).toFixed(2)}%
+                        tr.tr
+                            td.td Less than 10 messages
+                            td.td= lessThan10
+                            td.td #{(lessThan10/totalConvos * 100).toFixed(2)}%
+                        tr.tr
+                            td.td Less than 15 messages
+                            td.td= lessThan15
+                            td.td #{(lessThan15/totalConvos * 100).toFixed(2)}%
+                        tr.tr
+                            td.td More than 15
+                            td.td= theRest
+                            td.td #{(theRest/totalConvos * 100).toFixed(2)}%
+
+        .tile.is-9.is-child.is-flex.is-flex-wrap-wrap
+            each match in messages
+                .panel.m-4
+                    .panel-heading= match.match_id
+                    .panel-block
+                        table.table.is-hoverable.is-bordered.is-fullwidth
+                            thead.thead
+                                tr.tr.is-selected
+                                    td.td Last Message Sent
+                                    td.td Time Sent
+                            tbody.tbody
+                                tr.tr
+                                    td.td= match.message
+                                    td.td #{moment(Date(match.time_sent)).format("YYYY-MM-DD")}
