@@ -19,7 +19,6 @@ router.post('/upload', function (req, res, next) {
   req.session.save(() => {
     res.redirect("/user")
   })
-
 });
 
 module.exports = router;

@@ -106,7 +106,7 @@ router.get('/matches', function (req, res, next) {
       const qSearch = unanswered_qs_search[i];
       if (lastMessage.includes(qSearch)) {
         unanswered_count++
-        continue;
+        break
       }
     }
 
