@@ -14,6 +14,14 @@ block content
                             tr.tr
                                 td.td= search
                                 td.td= message_counts[i]
+
+                table.table
+                    tbody.tbody
+                        tr.tr
+                            td.td Unanswered Questions
+                            td.td= unanswered_count    
+                            td.td #{(unanswered_count/totalConvos * 100).toFixed(2)}%
+                
                 table.table.is-hoverable.is-fullwidth
                     thead.thead
                         tr.tr.is-selected

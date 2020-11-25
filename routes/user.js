@@ -59,6 +59,8 @@ router.get('/matches', function (req, res, next) {
   if (!profile_details) return res.redirect('/')
 
   // Message frequencies
+  let unanswered_qs_search = ["how", "what", "?"]
+  let unanswered_count = 0
   let message_search = ["Hey what's up", "Hey how's a going", "isolation", "quarantine"]
   let message_counts = [0, 0, 0, 0]
   let message_count = 0
@@ -99,6 +101,15 @@ router.get('/matches', function (req, res, next) {
     let lastMessage = message.messages[message.messages.length - 1].message
     lastMessage = lastMessage.replace(/&apos;/g, "'").replace(/&colon;/g, ":").replace(/&sol;/g, "/")
 
+    // Unanswered Question
+    for (let i = 0; i < unanswered_qs_search.length; i++) {
+      const qSearch = unanswered_qs_search[i];
+      if (lastMessage.includes(qSearch)) {
+        unanswered_count++
+        continue;
+      }
+    }
+
     let match = {
       match_id: message.match_id,
       message: lastMessage,
@@ -109,7 +120,7 @@ router.get('/matches', function (req, res, next) {
   });
 
   let totalConvos = oneMessage + lessThan5 + lessThan10 + lessThan15 + theRest
-  res.render('matches', { title: 'User', messages, message_search, message_counts, message_count, oneMessage, lessThan5, lessThan10, lessThan15, theRest, totalConvos });
+  res.render('matches', { title: 'User', messages, message_search, message_counts, unanswered_count, message_count, oneMessage, lessThan5, lessThan10, lessThan15, theRest, totalConvos });
 });
 
 module.exports = router
