@@ -10,7 +10,6 @@ const bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
 
-
 var app = express();
 app.use(session({
   secret: 'keyboard cat',

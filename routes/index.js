@@ -1,5 +1,4 @@
 var express = require('express');
-var fs = require('fs')
 var router = express.Router();
 
 /* GET home page. */
@@ -14,6 +13,7 @@ router.post('/upload', function (req, res, next) {
     return res.redirect("/")
   }
 
+  // Save uploaded JSON into a session
   var profile_details = JSON.parse(file.data.toString())
   req.session.profile_details = profile_details
   req.session.save(() => {
