@@ -1,4 +1,6 @@
 <script lang="ts">
+  import moment from "moment";
+
   export let data: string;
 
   let profile_details = JSON.parse(data);
@@ -73,11 +75,15 @@
       </tr>
       <tr class="tr">
         <td class="td">Birthday</td>
-        <td class="td">{profile_details.User.birth_date}</td>
+        <td class="td"
+          >{moment(profile_details.User.birth_date).format("DD-MM-YYYY")}</td
+        >
       </tr>
       <tr class="tr">
         <td class="td">Account Created</td>
-        <td class="td">{profile_details.User.create_date}</td>
+        <td class="td"
+          >{moment(profile_details.User.create_date).format("DD-MM-YYYY")}</td
+        >
       </tr>
       <tr class="tr">
         <td class="td">Days since account created</td>
